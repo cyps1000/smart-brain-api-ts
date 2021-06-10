@@ -79,6 +79,7 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
 
     next();
   } catch (error) {
+    console.error(error.message);
     res.status(401).send({ msg: "Token is not valid" });
   }
 };
