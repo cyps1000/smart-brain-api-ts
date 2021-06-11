@@ -11,6 +11,7 @@ import helmet from "helmet";
  */
 import { authRouter } from "./routes/auth";
 import { profileRouter } from "./routes/profile";
+import { faceDetectRouter } from "./routes/image";
 
 /**
  * Enables access to .env
@@ -38,5 +39,10 @@ app.use(authRouter);
  * Profile Router
  */
 app.use(profileRouter);
+
+/**
+ * Face Detect
+ */
+app.use(faceDetectRouter);
 
 export { app };

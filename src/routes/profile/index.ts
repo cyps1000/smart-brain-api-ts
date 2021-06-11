@@ -2,6 +2,7 @@ import express from "express";
 import { updateProfileController } from "./updateProfile";
 import { getCurrentProfileController } from "./getProfile";
 import { getProfilesController } from "./getProfiles";
+import { resetScoreController } from "./resetScore";
 
 /**
  * Defines the router
@@ -22,5 +23,10 @@ router.get("/api/profiles", getProfilesController);
  * Update profile
  */
 router.put("/api/profile", updateProfileController);
+
+/**
+ * Reset Score
+ */
+router.delete("/api/profile/score", resetScoreController);
 
 export { router as profileRouter };
