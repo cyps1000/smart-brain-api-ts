@@ -38,7 +38,7 @@ const loginUser = async (req: Request, res: Response) => {
   const existingUser = await User.findOne({ email });
 
   if (!existingUser) {
-    return res.status(400).json({ errors: [{ msg: "Invalid credentials" }] });
+    return res.status(400).send({ errors: [{ msg: "Invalid credentials" }] });
   }
 
   /**

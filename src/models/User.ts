@@ -49,15 +49,21 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    avatar: {
+      type: String
+    },
     password: {
       type: String,
       required: true
+    },
+    score: {
+      type: Number
     }
   },
   {
     toJSON: {
       versionKey: false,
-      transform(_doc, ret) {
+      transform(doc, ret) {
         ret.id = ret._id;
         delete ret._id;
         delete ret.password;

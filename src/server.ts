@@ -10,6 +10,7 @@ import helmet from "helmet";
  * Imports routes
  */
 import { authRouter } from "./routes/auth";
+import { profileRouter } from "./routes/profile";
 
 /**
  * Enables access to .env
@@ -32,5 +33,10 @@ app.use(helmet());
  * Auth Router
  */
 app.use(authRouter);
+
+/**
+ * Profile Router
+ */
+app.use(profileRouter);
 
 export { app };
