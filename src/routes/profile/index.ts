@@ -27,6 +27,6 @@ router.put("/api/profile", updateProfileController);
 /**
  * Reset Score
  */
-router.delete("/api/profile/score", resetScoreController);
+router.put("/api/profile/score", resetScoreController);
 
 export { router as profileRouter };
