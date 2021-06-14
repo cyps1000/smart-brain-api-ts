@@ -12,7 +12,7 @@
     "start": "ts-node-dev --poll src/index.ts",
     "test-dev": "jest --watchAll --no-cache",
     "test-coverage": "jest --collectCoverage --no-cache --detectOpenHandles",
-    "test": "jest --watchAll --no-cache"
+    "test": "jest --no-cache --detectOpenHandles"
   },
   "jest": {
     "preset": "ts-jest",
