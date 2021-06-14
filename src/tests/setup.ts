@@ -22,6 +22,7 @@ jest.setTimeout(30000);
  */
 beforeAll(async () => {
   process.env.JWT_KEY = "testJWT_KEY";
+  process.env.API_KEY = "testAPI_KEY";
   mongo = new MongoMemoryServer();
   const mongoUri = await mongo.getUri();
 
