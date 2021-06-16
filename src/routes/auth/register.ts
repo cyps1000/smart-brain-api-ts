@@ -41,7 +41,7 @@ const regiserUser = async (req: Request, res: Response) => {
   const existingUser = await User.findOne({ email });
 
   if (existingUser) {
-    return res.status(400).send({ errors: errors.array() });
+    return res.status(400).send({ errors: [{ msg: "Email is in use" }] });
   }
 
   /**
