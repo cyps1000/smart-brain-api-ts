@@ -57,7 +57,8 @@ const userSchema = new mongoose.Schema(
       required: true
     },
     score: {
-      type: Number
+      type: Number,
+      default: 0
     }
   },
   {

@@ -74,7 +74,7 @@ const detectFaces = async (req: Request, res: Response) => {
 
   await user.save();
 
-  res.send({ user, outputs });
+  res.send({ score: user.score, outputs });
 };
 
 /**
