@@ -1,5 +1,4 @@
 import { Request, Response, RequestHandler } from "express";
-import { body, validationResult } from "express-validator";
 import { auth } from "../../middlewares/auth";
 
 /**
@@ -22,7 +21,7 @@ const resetScore = async (req: Request, res: Response) => {
 
   await user.save();
 
-  res.send({ msg: "Score was reset to 0" });
+  res.send({ score: user.score, msg: "Score was reset to 0" });
 };
 
 /**

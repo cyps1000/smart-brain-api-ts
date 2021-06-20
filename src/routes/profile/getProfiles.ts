@@ -10,7 +10,7 @@ import { User } from "../../models";
  * Handles getting all the profiles
  */
 const getProfiles = async (req: Request, res: Response) => {
-  const profiles = await User.find({});
+  const profiles = await User.find({}).sort({ score: "desc" }).limit(10);
 
   res.send(profiles);
 };
