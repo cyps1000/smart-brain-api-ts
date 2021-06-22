@@ -44,37 +44,43 @@ const detectFaces = async (req: Request, res: Response) => {
 
   const { input } = req.body;
 
-  /**
-   * Checks if the user exists
-   */
-  const user = await User.findOne({ _id: req.currentUser!.id });
+  try {
+    /**
+     * Checks if the user exists
+     */
+    const user = await User.findOne({ _id: req.currentUser!.id });
 
-  if (!user) {
-    return res.status(400).send({ errors: [{ msg: "Invalid credentials" }] });
-  }
+    if (!user) {
+      return res.status(400).send({ errors: [{ msg: "Invalid credentials" }] });
+    }
 
-  /**
-   * Handles detecting the face
-   */
-  const data = await app.models.predict(Clarifai.FACE_DETECT_MODEL, input);
+    /**
+     * Handles detecting the face
+     */
+    const data = await app.models.predict(Clarifai.FACE_DETECT_MODEL, input);
 
-  if (data.status.code !== 10000) {
-    return res
+    if (data.status.code !== 10000) {
+      return res
+        .status(400)
+        .send({ errors: [{ msg: "Unable to work with API" }] });
+    }
+
+    /**
+     * Handles storing the outputs
+     */
+    const entries = data.outputs[0].data.regions.length;
+    const outputs = data.outputs;
+
+    user.score += entries;
+
+    await user.save();
+
+    res.send({ score: user.score, outputs });
+  } catch (error) {
+    res
       .status(400)
-      .send({ errors: [{ msg: "Unable to work with API" }] });
+      .send({ errors: [{ msg: "Request failed. Try another image" }] });
   }
-
-  /**
-   * Handles storing the outputs
-   */
-  const entries = data.outputs[0].data.regions.length;
-  const outputs = data.outputs;
-
-  user.score += entries;
-
-  await user.save();
-
-  res.send({ score: user.score, outputs });
 };
 
 /**
